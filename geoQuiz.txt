@@ -1,0 +1,106 @@
+-- MariaDB dump 10.19  Distrib 10.4.32-MariaDB, for Win64 (AMD64)
+--
+-- Host: localhost    Database: geoQuiz
+-- ------------------------------------------------------
+-- Server version	10.4.32-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `kontinent`
+--
+
+DROP TABLE IF EXISTS `kontinent`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `kontinent` (
+  `KID` int(11) NOT NULL AUTO_INCREMENT,
+  `KName` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`KID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `kontinent`
+--
+
+LOCK TABLES `kontinent` WRITE;
+/*!40000 ALTER TABLE `kontinent` DISABLE KEYS */;
+INSERT INTO `kontinent` VALUES (1,'Europa'),(2,'Asien'),(3,'Ozeanien'),(4,'Nordamerika'),(5,'Afrika'),(6,'Suedamerika');
+/*!40000 ALTER TABLE `kontinent` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `land`
+--
+
+DROP TABLE IF EXISTS `land`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `land` (
+  `LID` int(11) NOT NULL AUTO_INCREMENT,
+  `LName` varchar(30) DEFAULT NULL,
+  `LHauptstadt` varchar(30) DEFAULT NULL,
+  `LFlagge` int(11) DEFAULT NULL,
+  `LKontinentFK` int(11) DEFAULT NULL,
+  PRIMARY KEY (`LID`),
+  KEY `LKontinentFK` (`LKontinentFK`),
+  CONSTRAINT `land_ibfk_1` FOREIGN KEY (`LKontinentFK`) REFERENCES `kontinent` (`KID`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `land`
+--
+
+LOCK TABLES `land` WRITE;
+/*!40000 ALTER TABLE `land` DISABLE KEYS */;
+INSERT INTO `land` VALUES (1,'Deutschland','Berlin',1,1),(2,'Ukraine','Kiew',2,1),(3,'Grossbritannien','London',3,1),(4,'Japan','Tokyo',4,2),(5,'Daenemark','Kopenhagen',7,1),(6,'Polen','Warschau',8,1),(7,'Spanien','Madrid',9,1),(8,'USA','Washington, D.C.',5,4),(9,'Australien','Canberra',6,3),(10,'Kenia','Nairobi',10,5),(11,'Serbien','Belgrad',11,1);
+/*!40000 ALTER TABLE `land` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `scores`
+--
+
+DROP TABLE IF EXISTS `scores`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `scores` (
+  `ScID` int(11) NOT NULL AUTO_INCREMENT,
+  `ScName` varchar(20) DEFAULT NULL,
+  `ScScore` int(11) DEFAULT NULL,
+  `ScDatum` date DEFAULT NULL,
+  PRIMARY KEY (`ScID`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `scores`
+--
+
+LOCK TABLES `scores` WRITE;
+/*!40000 ALTER TABLE `scores` DISABLE KEYS */;
+INSERT INTO `scores` VALUES (1,'Test',20,'2024-06-26'),(2,'jnk',2,'2024-06-26'),(3,'Name...huoji',0,'2024-06-26'),(4,'kip',0,'2024-06-26'),(5,'kip',0,'2024-06-26'),(6,'kip',0,'2024-06-26'),(7,'kip',0,'2024-06-26'),(8,'kip',0,'2024-06-26'),(9,'kip',0,'2024-06-26'),(10,'kip',0,'2024-06-26'),(11,'kip',0,'2024-06-26'),(12,'kip',0,'2024-06-26'),(13,'kip',0,'2024-06-26'),(14,'kip',0,'2024-06-26'),(15,'kip',0,'2024-06-26'),(16,'kip',0,'2024-06-26'),(17,'kip',0,'2024-06-26'),(18,'kip',0,'2024-06-26'),(19,'kip',0,'2024-06-26'),(20,'kip',0,'2024-06-26'),(21,'kip',0,'2024-06-26'),(22,'kip',0,'2024-06-26'),(23,'kip',0,'2024-06-26'),(24,'kip',0,'2024-06-26'),(25,'q',0,'2024-06-26'),(26,'Karzna',10,'2024-06-26'),(27,'KARZNA',1,'2024-06-28'),(28,'dcv',1,'2024-06-28'),(29,',mj',5,'2024-06-28'),(30,'tgfxzh',6,'2024-07-01');
+/*!40000 ALTER TABLE `scores` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-07-08 10:53:29
