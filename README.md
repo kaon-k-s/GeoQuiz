@@ -1,5 +1,5 @@
 # Description
-GeoQuiz is an adjustable gqame to test your knowledge of geography.
+GeoQuiz is an adjustable game to test your knowledge of geography.
 
 C#, MySQL
 
